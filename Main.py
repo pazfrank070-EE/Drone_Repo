@@ -1,4 +1,4 @@
-from machine import Pin, PWM
+"""from machine import Pin, PWM
 import time
 
 # Create PWM objects for motor pins
@@ -39,4 +39,24 @@ while True:
 
     # Stop motors
     set_speed(0)
-    time.sleep(2)
+    time.sleep(2) """
+
+from machine import Pin, PWM
+
+# Create PWM objects on GPIO 2 and GPIO 3
+pwm2 = PWM(Pin(2))
+pwm3 = PWM(Pin(3))
+
+# Set PWM frequency (1 kHz)
+pwm2.freq(1000)
+pwm3.freq(1000)
+
+# Set 50% duty cycle
+duty = 32768  # Half of 65535
+
+pwm2.duty_u16(duty)
+pwm3.duty_u16(duty)
+
+# Keep the program running
+while True:
+    pass
