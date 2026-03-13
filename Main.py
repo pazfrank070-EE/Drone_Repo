@@ -62,7 +62,7 @@ while True:
     pass"""
 
 
-"""from machine import Pin, PWM
+from machine import Pin, PWM
 
 # Crear PWM en los pines GPIO 2, 3, 4 y 5
 pwm2 = PWM(Pin(2))
@@ -86,9 +86,9 @@ pwm5.duty_u16(duty)
 
 # Mantener el programa corriendo
 while True:
-    pass """
+    pass 
 
-from machine import Pin
+"""from machine import Pin
 
 # Configure GPIO 2, 3, 4, 5 as digital outputs
 pin2 = Pin(2, Pin.OUT)
@@ -104,4 +104,4 @@ pin5.value(1)
 
 # Keep program running
 while True:
-    pass
+    pass"""
