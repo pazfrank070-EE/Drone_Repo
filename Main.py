@@ -41,7 +41,7 @@ while True:
     set_speed(0)
     time.sleep(2) """
 
-from machine import Pin, PWM
+"""from machine import Pin, PWM
 
 # Create PWM objects on GPIO 2 and GPIO 3
 pwm2 = PWM(Pin(2))
@@ -58,5 +58,32 @@ pwm2.duty_u16(duty)
 pwm3.duty_u16(duty)
 
 # Keep the program running
+while True:
+    pass"""
+
+
+from machine import Pin, PWM
+
+# Crear PWM en los pines GPIO 2, 3, 4 y 5
+pwm2 = PWM(Pin(2))
+pwm3 = PWM(Pin(3))
+pwm4 = PWM(Pin(4))
+pwm5 = PWM(Pin(5))
+
+# Frecuencia PWM
+pwm2.freq(1000)
+pwm3.freq(1000)
+pwm4.freq(1000)
+pwm5.freq(1000)
+
+# Duty cycle al 50%
+duty = 32768
+
+pwm2.duty_u16(duty)
+pwm3.duty_u16(duty)
+pwm4.duty_u16(duty)
+pwm5.duty_u16(duty)
+
+# Mantener el programa corriendo
 while True:
     pass
