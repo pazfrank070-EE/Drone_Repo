@@ -1,4 +1,4 @@
-from machine import Pin, PWM
+"""from machine import Pin, PWM
 import time
 
 pins = [6, 7, 8, 9]
@@ -26,4 +26,44 @@ while True:
 
     # 500 kHz (very fast)
     set_all(500000, 32768)
-    time.sleep(5)
+    time.sleep(5)"""
+
+from machine import Pin, PWM
+import time
+
+# ESC pins
+pins = [6, 7, 8, 9]
+escs = []
+
+# Create PWM objects
+for p in pins:
+    pwm = PWM(Pin(p))
+    pwm.freq(50)  # Standard ESC frequency
+    escs.append(pwm)
+
+# Convert throttle (0.0–1.0) → duty
+def set_throttle(value):
+    min_duty = 1638   # 1ms pulse
+    max_duty = 8192   # 2ms pulse
+    duty = int(min_duty + (max_duty - min_duty) * value)
+    
+    for esc in escs:
+        esc.duty_u16(duty)
+
+# -----------------------
+# 🔑 ARMING SEQUENCE
+# -----------------------
+print("Arming ESCs...")
+
+set_throttle(0)      # Minimum throttle
+time.sleep(3)        # Wait for ESC beeps
+
+# -----------------------
+# 🚀 START MOTORS
+# -----------------------
+print("Starting motors...")
+
+set_throttle(0.15)   # Start low (adjust if needed)
+
+while True:
+    pass  # keep running
