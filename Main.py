@@ -1,29 +1,29 @@
 from machine import Pin, PWM
 import time
 
-# Use a valid low frequency
-FREQ = 10  
-
 pins = [6, 7, 8, 9]
 pwms = []
 
+# Initialize PWM
 for p in pins:
     pwm = PWM(Pin(p))
-    pwm.freq(FREQ)
     pwms.append(pwm)
 
-def set_duty_all(duty):
+def set_all(freq, duty):
+    print("Setting freq:", freq)
     for pwm in pwms:
+        pwm.freq(freq)
         pwm.duty_u16(duty)
 
-print("Slow PWM demo (10 Hz)")
-
 while True:
-    set_duty_all(16384)  # 25%
-    time.sleep(3)
+    # 1 kHz (nice and stable)
+    set_all(1000, 32768)   # 50%
+    time.sleep(5)
 
-    set_duty_all(32768)  # 50%
-    time.sleep(3)
+    # 100 kHz (fast)
+    set_all(100000, 32768)
+    time.sleep(5)
 
-    set_duty_all(49152)  # 75%
-    time.sleep(3)
+    # 500 kHz (very fast)
+    set_all(500000, 32768)
+    time.sleep(5)
