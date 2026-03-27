@@ -14,7 +14,6 @@ ESC_PINS = [6, 7, 8, 9]
 TEST_THROTTLE = 0.25    # 15% - gentle test speed
 RAMP_TIME = 3.0         # Seconds to ramp up/down
 RAMP_STEPS = 30         # Number of steps during ramp
-HOLD_TIME = 5.0         # Seconds to hold at test throttle
 
 # --- Functions ---
 def set_throttle(value):
@@ -48,20 +47,16 @@ try:
         pwm.freq(PWM_FREQ)
         escs.append(pwm)
 
-    print("Arming ESCs... listen for beeps confirming arm.")
+    print("Arming ESCs... wait for beeps to stop before motors start.")
     set_throttle(0.0)
-    time.sleep(3)
+    time.sleep(7)
 
     print("Ramping up to", int(TEST_THROTTLE * 100), "% throttle...")
     ramp_throttle(0.0, TEST_THROTTLE, RAMP_TIME, RAMP_STEPS)
 
-    print("Holding for", int(HOLD_TIME), "seconds...")
-    time.sleep(HOLD_TIME)
-
-    print("Ramping down...")
-    ramp_throttle(TEST_THROTTLE, 0.0, RAMP_TIME, RAMP_STEPS)
-
-    print("Test complete.")
+    print("Running at", int(TEST_THROTTLE * 100), "% throttle. Press Ctrl+C to stop.")
+    while True:
+        time.sleep(1)
 
 except KeyboardInterrupt:
     print("\nInterrupted! Stopping motors...")
