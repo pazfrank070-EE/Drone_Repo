@@ -11,7 +11,7 @@ PWM_FREQ = 50           # Standard ESC frequency (Hz)
 MIN_DUTY = 3277         # 1ms pulse at 50Hz = 0% throttle
 MAX_DUTY = 6554         # 2ms pulse at 50Hz = 100% throttle
 ESC_PINS = [6, 7, 8, 9]
-TEST_THROTTLE = 0.50   # 50% - moderate test speed
+TEST_THROTTLE = 0.75   # 75% - high test speed
 RAMP_TIME = 3.0         # Seconds to ramp up/down
 RAMP_STEPS = 30         # Number of steps during ramp
 HOLD_TIME = 7.0         # Seconds to hold at test throttle
